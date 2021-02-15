@@ -147,7 +147,7 @@ VALUES
 	(1,3), (2,2), (3,4), (4,3);
 
 CREATE TABLE armors_types (
-	id_armour_type INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	id_armor_type INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	type VARCHAR(24) NOT NULL
 );
 INSERT INTO armors_types(type)
@@ -155,22 +155,22 @@ VALUES
 	('Ligera'),('Mediana'),('Pesada');
 
 CREATE TABLE armors(
-	id_armour INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-	armour VARCHAR(16) NOT NULL,
+	id_armor INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	armor VARCHAR(16) NOT NULL,
 	defence INT NOT NULL,
 	durability INT NOT NULL,
 	weight INT NOT NULL,
 	quality INT NOT NULL,
 	rarity INT NOT NULL,
 	toughness INT NOT NULL,
-	id_armour_type INT UNSIGNED NOT NULL,
-	FOREIGN KEY (id_armour_type) REFERENCES armours_types(id_armour_type)
+	id_armor_type INT UNSIGNED NOT NULL,
+	FOREIGN KEY (id_armor_type) REFERENCES armors_types(id_armor_type)
 );
 
 CREATE TABLE characters_armors(
-	id_character_armour INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	id_character_armor INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	id_character INT UNSIGNED NOT NULL,
-	id_armour INT UNSIGNED NOT NULL,
+	id_armor INT UNSIGNED NOT NULL,
 	FOREIGN KEY (id_character) REFERENCES characters(id_character),
-	FOREIGN KEY (id_armour) REFERENCES armours(id_armour)
+	FOREIGN KEY (id_armor) REFERENCES armors(id_armor)
 );
