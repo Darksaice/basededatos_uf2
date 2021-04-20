@@ -116,3 +116,39 @@ CREATE TABLE characters_armors(
 	FOREIGN KEY (id_character) REFERENCES characters(id_character),
 	FOREIGN KEY (id_armor) REFERENCES armors(id_armor)
 );
+CREATE TABLE users(
+	id_user INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	username VARCHAR(24) NOT NULL,
+    name VARCHAR(24) NOT NULL,
+	subname VARCHAR(24) NOT NULL,
+    password CHAR(35) NOT NULL,
+    birthdate DATE NOT NULL,
+    email VARCHAR (32) NOT NULL,
+    register DATE NOT NULL
+    
+);
+----------BUCLES------------
+DELIMITER //
+CREATE PROCEDURE doiterate (p1 INT)
+BEGIN
+	label1: LOOP
+	SET p1 = p1 + 1;
+    IF p1 < 10 THEN
+    ITERATE label1;
+    END IF;
+    LEAVE label1;
+    END LOOP label1;
+    SET @x = p1;
+END //
+
+DELIMITER ;
+---------funcion insertar--------
+DELIMITER //
+
+CREATE FUNCTION inster_users (id_user INT UNSIGNED) RETURNS INT
+BEGIN
+	INSERT INTO users(username,name,subname,password,birthdate,email,register) VALUES ('patata', 'Paco','Lopez',MD5('contraseña'),0000-00-00,'olakease@adios.com',NOW());
+
+END //
+
+DELIMITER ;
